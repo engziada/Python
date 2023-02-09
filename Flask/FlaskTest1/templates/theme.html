@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+{% extends "bootstrap/base.html" %}
+
+<html lang="ar">
+{% block content %}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta name="csrf-token" content="2ymWXAgsC4rGwGF59RjqxGKBEpiEDUBP1gnlBfSr">
+
+    <link href='//fonts.googleapis.com/css?family=Cairo:400,100,200,300,500,600,700,800,900' rel='stylesheet'>
+    <!-- <link rel="stylesheet" href="http://qrcode.azhasoft.com/css/vendor.css?v=41">
+	<link rel="stylesheet" href="http://qrcode.azhasoft.com/css/rtl.css?v=41">
+    <link rel="stylesheet" href="http://qrcode.azhasoft.com/css/app.css?v=41">
+    <link rel="stylesheet" href="http://qrcode.azhasoft.com/css/qrstyle.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style1.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style3.css') }}">
+
+
+    <title>{%block title%}{%endblock%}</title>
+</head>
+
+<body >
+        
+    <div class="main-div">
+        
+        <div class="img-div" style="background-image: url(http://qrcode.azhasoft.com/img/logo_1.png);"></div>
+
+        <div class="listitem list1"  >
+            <div class="F9yp7e ikZYwf LgNcQe" dir="auto" role="heading" aria-level="1"
+                style="font-family: 'docs-Roboto';
+                        font-weight: 400;
+                        font-size: 24pt;
+                        line-height: 1.25;
+                        letter-spacing: 0;
+                        box-sizing: border-box;
+                        font-size: 32px;
+                        font-weight: 400;
+                        line-height: 40px;
+                        color: #202124;
+                        line-height: 135%;
+                        max-width: 100%;
+                        min-width: 0%;"
+                >{%block heading%}{%endblock%}</div>
+
+            <div class="cBGGJ OIC90c" dir="auto"
+                style="font-family: 'docs-Roboto';
+                    font-weight: 400;
+                    font-size: 11pt;
+                    line-height: 1.5;
+                    letter-spacing: 0;
+                    font-size: 14px;
+                    font-weight: 400;
+                    letter-spacing: .2px;
+                    line-height: 20px;
+                    color: #202124;
+                    margin-top: 12px;
+                    word-wrap: break-word;"
+                >{%block subheading%}{%endblock%}</div>
+        </div>
+
+        <div style="color: red;font-weight: bolder;">
+            {%if msg%}
+            خطأ في البيانات المدخلة
+            <br>
+            {{ msg }}
+            {%endif%}
+        </div>
+
+        {%block main%}
+        {%endblock%}
+
+    </div>  
+
+</body>
+{%endblock%}
+
+<!--
+{%block scripts%}
+    <script src="http://qrcode.azhasoft.com/js/vendor.js?v=41"></script>
+    <script src="http://qrcode.azhasoft.com/js/lang/ar.js?v=41"></script>
+    <script src="http://qrcode.azhasoft.com/js/lang/ar.js?v=41"></script>
+    <script src="http://qrcode.azhasoft.com/js/functions.js?v=41"></script>
+    <script src="http://qrcode.azhasoft.com/js/common.js?v=41"></script>
+    <script src="http://qrcode.azhasoft.com/js/app.js?v=41"></script>
+    <script src="http://qrcode.azhasoft.com/js/help-tour.js?v=41"></script>
+    <script src="http://qrcode.azhasoft.com/js/documents_and_note.js?v=41"></script>
+    <script src="http://qrcode.azhasoft.com/js/login.js?v=41"></script>
+
+    <script type="text/javascript">
+        base_path = "http://qrcode.azhasoft.com";
+        //used for push notification
+        APP = {};
+        APP.PUSHER_APP_KEY = '';
+        APP.PUSHER_APP_CLUSTER = '';
+        APP.PUSHER_ENABLED = '';
+                APP.USER_ID = '';
+    </script>
+
+    <script type="text/javascript">
+        moment.tz.setDefault('');
+        $(document).ready(function(){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            
+                });
+        
+        var financial_year = {
+            start: moment(''),
+            end: moment(''),
+        }
+        
+        var datepicker_date_format = "mm/dd/yyyy";
+        var moment_date_format = "MM/DD/YYYY";
+        var moment_time_format = "HH:mm";
+
+        var app_locale = "ar";
+
+        var non_utf8_languages = [
+                    "ar",
+                    "hi",
+                    "ps",
+                ];
+
+        var __default_datatable_page_entries = "25";
+
+        var __new_notification_count_interval = "60000";
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#change_lang').change( function(){
+                window.location = "http://qrcode.azhasoft.com/business/register?lang=" + $(this).val();
+            });
+        })
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready( function(){
+            var locale = "ar";
+            var isRTL =  true; 
+            $('#calendar').fullCalendar('option', {
+                locale: locale,
+                isRTL: isRTL
+            });
+        });
+    </script>    
+    
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $('#change_lang').change( function(){
+            window.location = "http://qrcode.azhasoft.com/business/register?lang=" + $(this).val();
+        });
+    })
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.select2_register').select2();
+
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' // optional
+            });
+        });
+    </script>
+{%endblock%}
+-->
+</html>

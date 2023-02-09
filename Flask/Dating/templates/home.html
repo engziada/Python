@@ -1,0 +1,261 @@
+{% extends 'theme.html' %}
+
+{% block title %}الصفحة الرئيسية{% endblock %}
+
+{% block content %}
+    <p>مرحبا, {{ fullname }}!</p>
+
+        <div class="search">
+            <p>بحث عن شريك</p>
+
+            <form action="{{ url_for('home') }}" method="post" autocomplete="on">
+            <table>
+                <tr>
+                    <td>
+                        <label for="gender">أبحث عن</label>
+                        <div class="form-group radio">
+                            <input type="radio" name="gender" value="ذكر"  id="gender" checked/>
+                            <span class="radio-span">ذكر</span>
+                            <input type="radio" name="gender" value="أنثى" id="gender"/>
+                            <span class="radio-span">أنثى </span>
+                        </div>
+                    </td>
+
+                    <td>
+                        <label for="marriagetype">نوع الزواج</label>
+                        <div id="list1" class="dropdown-check-list">
+                            <span class="anchor">نوع الزواج</span>
+                            <ul class="items">
+                                <li><input type="checkbox" name="marriagetype" value="شرعي" {{ "checked" if marriagetype else "" }}/>شرعي</li>
+                                <li><input type="checkbox" name="marriagetype" value="علني" {{ "checked" if marriagetype else "" }}/>علني</li>
+                                <li><input type="checkbox" name="marriagetype" value="سري" {{ "checked" if marriagetype else "" }}/>سري</li>
+                                <li><input type="checkbox" name="marriagetype" value="مؤقت" {{ "checked" if marriagetype else "" }}/>مؤقت</li>
+                                <li><input type="checkbox" name="marriagetype" value="مسيار" {{ "checked" if marriagetype else "" }}/>مسيار</li>
+                            </ul>
+                        </div>
+                    </td>
+
+                    <td>
+                        <label for="age">العمر</label>
+                        <table>
+                            <tr>
+                                <td><a> من </a><a id="ageMinValue">{%if data%}{{data['ageMin']}}{%else%}20{%endif%}</a></td>
+                                <td><a> إلى </a><a id="ageMaxValue">{%if data%}{{data['ageMax']}}{%else%}80{%endif%}</a></td>
+                            </tr>
+                            <tr>
+                                <td><input name="ageMin" id="ageMin" type="range" min="18" max="120" value="{%if data%}{{data['ageMin']}}{%else%}20{%endif%}" oninput="ageMax.min=this.value; ageMinValue.innerText = this.value; "></td>
+                                <td><input name="ageMax" id="ageMax" type="range" min="18" max="120" value="{%if data%}{{data['ageMax']}}{%else%}80{%endif%}" oninput="ageMaxValue.innerText = this.value"></td>
+                            </tr>                
+                        </table>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <label for="smokingstatus">مدخن</label>
+                        <div class="form-group radio">
+                            <input type="radio" name="smokingstatus" value="1"  id="smokingstatus" checked/>
+                            <span class="radio-span">نعم</span>
+                            <input type="radio" name="smokingstatus" value="0" id="smokingstatus"/>
+                            <span class="radio-span">لا </span>
+                        </div>
+                    </td>
+
+                    <td>
+                        <label for="nationality">الجنسية</label>
+                        <input type="text" name="nationality" placeholder="الجنسية" id="nationality" value="{{data['nationality']}}">
+                    </td>
+
+                    <td>
+                        <label for="weight">الوزن (كجم)</label>
+                        <table>
+                            <tr>
+                                <td><a> من </a><a id="weightMinValue">{%if data%}{{data['weightMin']}}{%else%}60{%endif%}</a></td>
+                                <td><a> إلى </a><a id="weightMaxValue">{%if data%}{{data['weightMax']}}{%else%}100{%endif%}</a></td>
+                            </tr>
+                            <tr>
+                                <td><input name="weightMin" id="weightMin" type="range" min="50" max="200" value="{%if data%}{{data['weightMin']}}{%else%}60{%endif%}" oninput="weightMax.min=this.value; weightMinValue.innerText = this.value; "></td>
+                                <td><input name="weightMax" id="weightMax" type="range" min="50" max="200" value="{%if data%}{{data['weightMax']}}{%else%}100{%endif%}" oninput="weightMaxValue.innerText = this.value"></td>
+                            </tr>                
+                        </table>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="color">لون البشرة</label>
+                        <input type="text" name="color" placeholder="لون البشرة" id="color" value="{{data['color']}}">
+                    </td>
+                    <td>
+                        <label for="martialstatus">الحالة الإجتماعية</label>
+                        <div id="list2" class="dropdown-check-list">
+                            <span class="anchor">الحالة الإجتماعية</span>
+                            <ul class="items">
+                                <li><input type="checkbox" name="martialstatus" value="شرعي" {{ "checked" if marriagetype else "" }}/>شرعي</li>
+                                <li><input type="checkbox" name="martialstatus" value="علني" {{ "checked" if marriagetype else "" }}/>علني</li>
+                                <li><input type="checkbox" name="martialstatus" value="سري" {{ "checked" if marriagetype else "" }}/>سري</li>
+                                <li><input type="checkbox" name="martialstatus" value="مؤقت" {{ "checked" if marriagetype else "" }}/>مؤقت</li>
+                                <li><input type="checkbox" name="martialstatus" value="مسيار" {{ "checked" if marriagetype else "" }}/>مسيار</li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td>
+                        <label for="length">الطول (سم)</label>
+                        <table>
+                            <tr>
+                                <td><a> من </a><a id="lengthMinValue">{%if data%}{{data['lengthMin']}}{%else%}150{%endif%}</a></td>
+                                <td><a> إلى </a><a id="lengthMaxValue">{%if data%}{{data['lengthMax']}}{%else%}170{%endif%}</a></td>
+                            </tr>
+                            <tr>
+                                <td><input name="lengthMin" id="lengthMin" type="range" min="50" max="250" value="{%if data%}{{data['lengthMin']}}{%else%}150{%endif%}" oninput="lengthMax.min=this.value; lengthMinValue.innerText = this.value; "></td>
+                                <td><input name="lengthMax" id="lengthMax" type="range" min="50" max="250" value="{%if data%}{{data['lengthMax']}}{%else%}170{%endif%}" oninput="lengthMaxValue.innerText = this.value"></td>
+                            </tr>                
+                        </table>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="qabila">القبيلة</label>
+                        <input type="text" name="qabila" placeholder="القبيلة" id="qabila" value="{{data['qabila']}}">
+                    </td>
+                    <td>
+                        <label for="area">المنطقة</label>
+                        <input type="text" name="area" placeholder="المنطقة" id="area" value="{{data['area']}}">
+                    </td>
+                    <td>
+                        <label for="city">المدينة</label>
+                        <input type="text" name="city" placeholder="المدينة" id="city" value="{{data['city']}}">
+                    </td>
+                </tr>
+
+            </table>
+        
+            <input type="submit" name="Search" value="بحث">
+        </form>
+
+        </div>
+
+        <div class="searchresults">
+            {%if searchResults%}
+            <p>نتائج البحث</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>الكود</th>
+                        <th>الجنسية</th>
+                        <th>العمر</th>
+                        <th>الطول</th>
+                        <th>الوزن</th>
+                        <th>لون البشرة</th>
+                        <!-- <th>الحالة الوظيفية</th> -->
+                        <th>القبيلة</th>
+                        <!-- <th>مدخن</th> -->
+                        <th>الحالة الإجتماعية</th>
+                        <th>المنطقة</th>
+                        <th>المدينة</th>
+                        <!-- <th>منطقه الأصل</th> -->
+                        <th>المؤهل الدراسى</th>
+                        <th>نوع الزواج</th>
+                        <!-- <th>هل تقبل بجنسية أخرى</th>
+                        <th>تحدث عن نفسك</th>
+                        <th>الشروط المطلوبة فى الطرف الأخر</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for row in searchResults%}
+                    <tr>
+                        <td>{{row.idman}}</td>
+                        <td>{{row.nationality}}</td>
+                        <td>{{row.age}}</td>
+                        <td>{{row.length}}</td>
+                        <td>{{row.weight}}</td>
+                        <td>{{row.color}}</td>
+                        <td>{{row.qabila}}</td>
+                        <td>{{row.martialstatus}}</td>
+                        <td>{{row.area}}</td>
+                        <td>{{row.city}}</td>
+                        <td>{{row.qualifications}}</td>
+                        <td>{{row.marriagetype}}</td>
+                        <!-- <td>{{row.anothernationality}}</td>
+                        <td>{{row.about}}</td>
+                        <td>{{row.requirments}}</td> -->
+                        <!-- <td>{{row.userid}}</td>
+                        <td>{{row.gender}}</td> -->
+                    </tr>
+                    <tr>
+                        <td colspan="12">
+                            <details>
+                                <summary>تفاصيل أكثر ...</summary>
+                                <table>
+                                    <tr>
+                                        <td>تاريخ الإشتراك</td>
+                                        <td>{{row.created}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>الحالة الوظيفية</td>
+                                        <td>{{row.jobstatus}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>مدخن؟</td>
+                                        <td>{%if row.smokingstatus%}نعم{%else%}لا{%endif%}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>منطقة الأصل</td>
+                                        <td>{{row.origin}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>هل يقبل بجنسية أخرى</td>
+                                        <td>{%if row.anothernationality%}نعم{%else%}لا{%endif%}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>نبذه عن المشترك</td>
+                                        <td>{{row.about}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>مواصفات مطلوبة في الشريك</td>
+                                        <td>{{row.requirments}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <form method="post" action="#">
+                                                <input type="hidden" id="requesterid" name="requesterid" value="{{session['iduser']}}">
+                                                <input type="hidden" id="targetid" name="targetid" value="{{row.userid}}">
+                                                <input class="button button-single" type="submit" name="Request" value="طلب تواصل">
+                                            </form>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </details>
+                        </td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+            {%else%}
+                <p>لا توجد نتائج</p>
+            {%endif%}
+        </div>
+        <!-- <iframe frameborder='0' noresize='noresize' style='position: absolute; background: transparent; width: 100%; height:100%;' src="{{ url_for('profile') }}" frameborder="0"></iframe> -->
+
+{% endblock %}
+
+<!-- {%block script%}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery</script>
+<script type="text/javascript">
+    $(function() {
+    $("td[colspan=12]").find("p").hide();
+    $("table").click(function(event) {
+        event.stopPropagation();
+        var $target = $(event.target);
+        if ( $target.closest("td").attr("colspan") > 1 ) {
+            $target.slideUp();
+        } else {
+            $target.closest("tr").next().find("p").slideToggle();
+        }                    
+    });
+});
+</script>
+{%endblock%} -->

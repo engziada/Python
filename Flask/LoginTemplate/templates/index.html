@@ -1,0 +1,28 @@
+{% extends 'login_theme.html' %}
+
+{%block title%}تسجيل الدخول{%endblock%}
+
+{%block content%}
+    <div class="login">
+        <h1>تسجيل الدخول</h1>
+        <div class="links">
+            <a href="{{ url_for('login') }}" class="active">تسجيل الدخول</a>
+            <a href="{{ url_for('register') }}">مستخدم جديد</a>
+        </div>
+        <form action="{{ url_for('login') }}" method="post">
+
+            <label for="email">
+                <i class="fas fa-user"></i>
+            </label>
+            <input type="text" name="email" placeholder="البريد الإلكتروني" id="email" required>
+
+            <label for="password">
+                <i class="fas fa-lock"></i>
+            </label>
+            <input type="password" name="password" placeholder="كلمة المرور" id="password" required>
+
+            <div class="msg">{{ msg }}</div>
+            <input type="submit" value="دخول">
+        </form>
+    </div>
+{%endblock%}

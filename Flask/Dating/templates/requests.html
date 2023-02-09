@@ -1,0 +1,57 @@
+{% extends 'theme.html' %}
+
+{% block title %}
+الطلبات
+{% endblock %}
+
+{% block content %}
+<h2>الطلبات</h2>
+<div class="searchresults">
+    <a href="{{url_for('export',tablename='request')}}">حفظ نسخة من طلبات التواصل</a>
+    <table>
+        <thead>
+            <tr>
+                <th>الكود</th>
+                <th>الإسم</th>
+                <th>رقم الجوال</th>
+                <th style="width: 1px;"></th>
+                <th>الكود</th>
+                <th>الإسم</th>
+                <th>رقم الجوال</th>
+                <th style="width: 1px;"></th>
+                <th>حالة الطلب</th>
+                <th style="width: 1px;"></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for row in requests%}
+            <tr>
+                <td>{{row.idman1}}</td>
+                <td>{{row.fullname1}}</td>
+                <td>{{row.phoneno1}}</td>
+                <td style="background-color: #3274d6;"></td>
+                <td>{{row.idman2}}</td>
+                <td>{{row.fullname2}}</td>
+                <td>{{row.phoneno2}}</td>
+                <td style="background-color: #3274d6;"></td>
+                <td>{{row.status}}</td>
+                <td style="background-color: #3274d6;"></td>
+                <td>
+                    {%if row.phoneno1 and row.phoneno2%}
+                    <form method="post" action="#">
+                        <input type="hidden" id="matchid" name="matchid" value="{{row.matchid}}">
+                        <input type="hidden" id="requesterphoneno" name="requesterphoneno" value="{{row.phoneno1}}">
+                        <input type="hidden" id="targetphoneno" name="targetphoneno" value="{{row.phoneno2}}">
+                        <input type="submit" name="SendConfirmation" value="رسالة تأكيد" title="إرسال رسالة تأكيد للطرف أول">
+                        <input type="submit" name="SendRequest" value="إرسال طلب" title="إرسال الطلب للطرف الثاني">
+                        <input type="submit" name="DeleteRequest" value="حذف" title="حذف الطلب">
+                    </form>
+                    {%endif%}
+                </td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+</div>
+{%endblock%}

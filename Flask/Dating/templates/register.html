@@ -1,0 +1,46 @@
+{% extends 'login_theme.html' %}
+
+{%block title%}مستخدم جديد{%endblock%}
+
+{%block content%}
+    <div class="register">
+        <h1>تسجيل جديد</h1>
+        <div class="links">
+            <a href="{{ url_for('login') }}">تسجيل الدخول</a>
+            <a href="{{ url_for('register') }} " class="active">مستخدم جديد</a>
+        </div>
+        <form action="{{ url_for('register') }}" method="post" autocomplete="off">
+           
+            <label for="fullname">
+                <i class="fas fa-user"></i>
+            </label>
+            <input type="text" name="fullname" placeholder="الإسم بالكامل" id="fullname" required>
+
+            <label for="phoneno">
+                <i class="fas fa-user"></i>
+            </label>
+            <input type="text" name="phoneno" placeholder="رقم الجوال (يحتوي على كود الدولة)" id="phoneno" required>
+
+            <label for="password">
+                <i class="fas fa-lock"></i>
+            </label>
+            <input type="password" name="password" placeholder="كلمة المرور" id="password" required>
+
+
+            <!-- {%if msg%}
+            <div class="msg hideMe">{{ msg }}</div>
+            {%endif%} -->
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="msg hideMe">
+                            {% for message in messages %}
+                                {{ message }}
+                            {% endfor %}
+                    </div>
+                {% endif %}
+    		{% endwith %}
+
+            <input type="submit" value="حفظ">
+        </form>
+    </div>
+{%endblock%}

@@ -1,0 +1,39 @@
+{% extends 'theme.html' %}
+
+{%block title%}
+دخول
+{%endblock%}
+
+{%block heading%}
+الحضور والسحب على هدايا اللقاء السنوي 22 لأسرة السديس
+{%endblock%}
+
+{%block subheading%}
+سيقام الاجتماع السنوي لأسرة السديس بمشيئة الله في مدينة الرياض&nbsp; يوم الجمعة 27-06-1444هـ الموافق 20-01-2023م في تمام الساعة 7:00 مساءً&nbsp;
+{%endblock%}
+
+{%block main%}
+    <div style=" max-width: 800px;margin: auto; margin-top: 30px;">
+        <form method="POST">
+            <input name="_token" type="hidden" value="2ymWXAgsC4rGwGF59RjqxGKBEpiEDUBP1gnlBfSs">
+
+            <div class="listitem" style="" >
+                <div class="label-d"> رقم الجوال <span class="span-req"> * </span></div>
+                <div class="input-class">
+                    <input type="text" class="text-class" name="PhoneNo" id="PhoneNo" value="" autocomplete="off" required>
+                    <div class="text-content"></div>
+                </div>
+            </div>
+
+            <div class="form-group"  style="width: 100%;text-align: center;margin-top: -10px;background-color: white;padding-bottom: 10px;padding-top: 20px;border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+                <button type="submit" class="btn btn-primary btn-flat btn-login" style="border-radius: 10px;height: 50px;font-size: 19px;">دخول</button>
+            </div>
+        </form>
+        
+        <form action="{{ url_for('register') }}" method="post">
+            <div class="form-group"  style="width: 100%;text-align: center;margin-top: -10px;background-color: white;padding-bottom: 10px;padding-top: 20px;border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+                <button class="btn btn-flat" type="submit" value="register">تسجيل جديد</button>
+            </div>
+        </form>
+    </div>
+{%endblock%}

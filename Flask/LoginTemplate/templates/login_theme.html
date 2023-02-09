@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+	<head>
+		<meta charset="utf-8">
+		<title>{%block title %}{%endblock%}</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+	</head>
+	<body>
+		<nav class="navtop">
+			<div>
+				<h1>أبو عبدالله - للزواج الشرعي</h1>
+                <a href="{{ url_for('home') }}"><i class="fas fa-home" ></i>الصفحة الرئيسية</a>
+				<a href="{{ url_for('profile') }}"><i class="fas fa-user-circle"></i>الملف الشخصي</a>
+				<!-- <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i>خروج</a> -->
+			</div>
+		</nav>
+		<div>
+			{% block content %}{% endblock %}
+		</div>
+	</body>
+</html>

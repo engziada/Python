@@ -1,0 +1,57 @@
+{% extends 'theme.html' %}
+
+{%block title%}
+السحب
+{%endblock%}
+
+{%block heading%}
+السحب على هدايا اللقاء السنوي 22 لأسرة السديس
+{%endblock%}
+
+{%block subheading%}
+إختيار الفائزين يتم بصورة عشوائية تمام
+{%endblock%}
+
+{%block main%}
+    <div style=" max-width: 800px; margin: auto; margin-top: 30px;">
+            <div class="listitem" style="text-align:center;" >
+                <h3>الفائز رقم</h3>
+                <div id="element" style="font-size: 72px; font-family: STENCIL; color:red" data-text="{{winnerid}}"></div>
+                <div id="winnername" style="display:none">
+                    <h3>الفائز هو</h3>
+                    <h1 style="color:darkblue;">{{winnername}}</h1>
+                </div>
+            </div>
+    </div>
+
+
+    <script>
+        const element = document.querySelector("#element");
+        const startTime = Date.now();
+        const duration = 4000;
+        const letters = element.dataset.text.split("");
+        const steps = letters.length;
+
+        const map = (n, x1, y1, x2, y2) => Math.min(Math.max(((n - x1) * (y2 - x2)) / (y1 - x1) + x2, x2), y2);
+
+        const random = (set) => set[Math.floor(Math.random() * set.length)];
+
+        let frame;
+
+        (function animate() {
+        frame = requestAnimationFrame(animate);
+
+        const step = Math.round(map(Date.now() - startTime, 0, duration, 0, steps));
+
+        element.innerText = letters
+            .map((s, i) => (step - 1 >= i ? letters[i] : random("0123456789")))
+            .join("");
+
+        if (step >= steps) {
+            cancelAnimationFrame(frame);
+            document.getElementById('winnername').style.display = 'block';
+        }
+        })();
+    </script>
+
+{%endblock%}

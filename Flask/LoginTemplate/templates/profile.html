@@ -1,0 +1,26 @@
+{% extends 'theme.html' %}
+
+{% block title %}
+الملف الشخصي
+{% endblock %}
+
+{% block content %}
+<h2>صفحة الملف الشخصي</h2>
+<div>
+    <p>بيانات الملف</p>
+    <table>
+        <tr>
+            <td>الإسم بالكامل:</td>
+            <td>{{ account['fullname'] }}</td>
+        </tr>
+        <tr>
+            <td>كلمة المرور:</td>
+            <td>{{ account['password'] }}</td>
+        </tr>
+        <tr>
+            <td>البريد الإلكتروني:</td>
+            <td>{{ account['email'] }}</td>
+        </tr>
+    </table>
+</div>
+{% endblock %}

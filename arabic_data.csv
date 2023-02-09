@@ -1,0 +1,3 @@
+﻿iduser,email,fullname,password,phoneno
+1,admin@here.com,Administrator,sha256$eoN8OUQAKajoSozT$32512340baa95f142dba43e267d7763b3a07d81684a2de69ce3bdf9ce3e122d2,00201026655008
+2,engziada@gmail.com,محمد أحمد زيادة,sha256$kf1JXaffEndwG8oq$d0c3b3dd36c98a1abcfba802766e464a74a614825c3e6f6040b107e23148c8de,00201555250555

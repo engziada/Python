@@ -1,0 +1,43 @@
+{% extends 'theme.html' %}
+
+{% block title %}
+المستخدمين
+{% endblock %}
+
+{% block content %}
+<h2>قاعدة بيانات المشتركين</h2>
+<div class="searchresults">
+    <a href="{{url_for('export',tablename='user')}}">حفظ نسخة من بيانات المستخدمين</a>
+    <br />
+    <a href="{{url_for('export',tablename='man')}}">حفظ نسخة من ملفات المستخدمين</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>الكود</th>
+                <th>الإسم بالكامل</th>
+                <th>رقم الجوال</th>
+                <th style="width: 1px;"></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for row in users%}
+            <tr>
+                <td>{{row.iduser}}</td>
+                <td>{{row.fullname}}</td>
+                <td>{{row.phoneno}}</td>
+                <td style="background-color: #3274d6;"></td>
+                <td style="width: 40%;">
+                    <form method="post" action="#">
+                        <input type="hidden" id="userid" name="userid" value="{{row.iduser}}">
+                        <input type="submit" name="ResetPassword" value="إعادة تعيين كلمة المرور" title="إعادة تعيين كلمة المرور">
+                        <input type="submit" name="DeleteUser" value="حذف ملف المشترك" title="حذف ملف المشترك">
+                    </form>
+                </td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+</div>
+{%endblock%}

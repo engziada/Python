@@ -1,0 +1,41 @@
+{% extends 'theme.html' %}
+
+{%block title%}
+كود السحب
+{%endblock%}
+
+{%block heading%}
+الحضور والسحب على هدايا اللقاء السنوي 22 لأسرة السديس
+{%endblock%}
+
+{%block subheading%}
+سيقام الاجتماع السنوي لأسرة السديس بمشيئة الله في مدينة الرياض&nbsp; يوم الجمعة 27-06-1444هـ الموافق 20-01-2023م في تمام الساعة 7:00 مساءً&nbsp;
+{%endblock%}
+
+{%block main%}
+{%if type=='exist'%}
+    <div style=" max-width: 800px; margin: auto; margin-top: 30px;">
+            <div class="listitem" style="text-align:center;" >
+                <h3 >تم تسجيل بياناتك بنجاح</h3>
+                <h3 >كود التسجيل و السحب</h3>
+                <h1 style="color:red">{{code}}</h1>
+                <h3 >برجاء الإحتفاظ به حتى يتسنى لكم المشاركة في السحب</h3>
+            </div>
+    </div>
+{%elif type=='not exist'%}
+    <div style=" max-width: 800px; margin: auto; margin-top: 30px;">
+            <div class="listitem" style="text-align:center;" >
+                <h3 style="color:red">لم يتم تسجيل بيانات خاصة بهذا الرقم من قبل</h3>
+            </div>
+    </div>
+{%elif type=='confirm'%}
+    <div style=" max-width: 800px; margin: auto; margin-top: 30px;">
+            <div class="listitem" style="text-align:center;" >
+                <h3 >تم تأكيد حضورك بنجاح</h3>
+                <h3 >كود التسجيل و السحب</h3>
+                <h1 style="color:red">{{code}}</h1>
+                <h3 >برجاء الإحتفاظ به للمشاركة في السحب</h3>
+            </div>
+    </div>
+{%endif%}
+{%endblock%}

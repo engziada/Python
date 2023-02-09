@@ -1,0 +1,48 @@
+{% extends 'theme.html' %}
+
+{%block title%}
+الضيوف المشاركين
+{%endblock%}
+
+{%block main%}
+<div class="table-responsive" style="width:100%; margin: auto; direction: rtl;">
+    <table class="table table-primary table-striped table-bordered" >
+        <thead >
+            <tr >
+                <th scope="col" style="text-align: right;">العائلة</th>
+                <th scope="col" style="text-align: right;">الإسم</th>
+                <th scope="col" style="text-align: right;">صلة القرابة</th>
+                <th scope="col" style="text-align: right;">العمر</th>
+                <th scope="col" style="text-align: right;">السن</th>
+                <th scope="col" style="text-align: right;">رقم الجوال</th>
+                <th scope="col" style="text-align: right;">المدينة</th>
+                <th scope="col" style="text-align: right;">الحضور</th>
+                <th scope="col" style="text-align: right;">مقترحات</th>
+                <th scope="col" style="text-align: right;">البريد الإلكتروني</th>
+                <th scope="col" style="text-align: center;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for guest in guests%}
+                <tr>
+                    <td>{{guest.FamilyId}}</td>
+                    <td>{{guest.FirstName}} {{guest.ParentName}} {{guest.FirstGrandName}} {{guest.SecondGrandName}} {{guest.tdirdGrandName}}</td>
+                    <td>{{guest.RelationToFamily}}</td>
+                    <td>{{guest.AgeRangeId}}</td>
+                    <td>{{guest.GenderId}}</td>
+                    <td>{{guest.PhoneNo}}</td>
+                    <td>{{guest.CityName}}</td>
+                    <td>{{guest.WillYouAttend}}</td>
+                    <td>{{guest.Ideas}}</td>
+                    <td>{{guest.Email}}</td>
+                    <td>
+                        <form action="/delete_guest/{{guest.idGuest}}" method="post">
+                            <button type="submit" class="btn btn-primary">حذف</button>
+                        </form>
+                    </td>
+                </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+</div>
+{%endblock%}

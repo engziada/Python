@@ -1,0 +1,200 @@
+{% extends 'theme.html' %}
+
+{%block title%}
+تسجيل
+{%endblock%}
+
+{%block heading%}
+نموذج تسجيل الحضور والسحب على هدايا اللقاء السنوي 22 لأسرة السديس
+{%endblock%}
+
+{%block subheading%}
+ببالغ السرور يسرنا دعوتكم للاجتماع السنوي لأسرة السديس، والذي سيقام بمشيئة الله في مدينة الرياض&nbsp; يوم الجمعة 27-06-1444هـ الموافق 20-01-2023م في تمام الساعة 7:00 مساءً&nbsp;
+{%endblock%}
+
+{%block main%}
+    <div style=" max-width: 800px;margin: auto; margin-top: 30px;">
+        <form method="POST" action="{{ url_for('register') }}" accept-charset="UTF-8" id="business_register_form" enctype="multipart/form-data">
+            
+            <input name="_token" type="hidden" value="2ymWXAgsC4rGwGF59RjqxGKBEpiEDUBP1gnlBfSr">
+
+            <div class="listitem">
+                <div class="label-d"> الإيميل <span class="span-req"> * </span></div>
+            <div class="input-class">
+                    <input type="text" class="text-class" name="Email"  id="Email" value="{%if data%}{{data.Email}}{%endif%}" autocomplete="off" required>
+                    <div class="text-content"></div>
+                </div>
+            </div>
+
+            <div class="listitem" style="font-family: 'docs-Roboto';
+                                        font-weight: 400;
+                                        font-size: 12pt;
+                                        line-height: 1.5;
+                                        letter-spacing: 0;
+                                        color: #202124;word-wrap: break-word;" >
+                شرفنا بإسمك الخماسي من غير إسم الأسرة والمعلومات الأخرى بشكل دقيق
+            </div>
+
+            <div class="listitem" style="" >
+                <div class="label-d"> إسم العائلة <span class="span-req"> * </span></div>
+                <div class="form-group">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="FamilyId" value="1" id="FamilyId" checked />
+                            <span class="radio-span">السديس</span>
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="FamilyId" value="2" id="FamilyId"/>
+                            <span class="radio-span"> أخري
+                    </span>
+                            <input type="text" class="text-class" name="family" id="FamilyName" value="" autocomplete="off" style="margin-top: 10px;"  >
+                            <div class="text-content"></div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="listitem" style="" >
+                <div class="label-d"> إسمك الأول <span class="span-req"> * </span></div>
+            <div class="input-class">
+                    <input type="text" class="text-class" name="FirstName" id="FirstName" value="{{data.FirstName}}" autocomplete="off" required>
+                    <div class="text-content"></div>
+                </div>
+            </div>
+
+            <div class="listitem" style="" >
+                <div class="label-d"> إسم الأب <span class="span-req"> * </span></div>
+            <div class="input-class">
+                    <input type="text" class="text-class" name="ParentName" id="ParentName" value="{{data.ParentName}}" autocomplete="off" required>
+                    <div class="text-content"></div>
+                </div>
+            </div>
+
+            <div class="listitem" style="" >
+                <div class="label-d"> إسم الجد الأول <span class="span-req"> * </span></div>
+            <div class="input-class">
+                    <input type="text" class="text-class" name="FirstGrandName" id="FirstGrandName" value="{{data.FirstGrandName}}" autocomplete="off" required>
+                    <div class="text-content"></div>
+                </div>
+            </div>
+
+            <div class="listitem" styl
+                e="" >
+                <div class="label-d"> إسم الجد الثاني <span class="span-req"> * </span></div>
+            <div class="input-class">
+                    <input type="text" class="text-class" name="SecondGrandName" id="SecondGrandName" value="{{data.SecondGrandName}}" autocomplete="off" required>
+                    <div class="text-content"></div>
+                </div>
+            </div>
+
+            <div class="listitem" style="" >
+                <div class="label-d"> إسم الجد الثالث أو فرع الأسرة <span class="span-req"> * </span></div>
+            <div class="input-class">
+                    <input type="text" class="text-class"  name="ThirdGrandName" id="ThirdGrandName" value="{{data.ThirdGrandName}}" autocomplete="off" required>
+                    <div class="text-content"></div>
+                </div>
+            </div>
+
+            <div class="listitem" style="" >
+                <div class="label-d"> إن لم تكن من أسرة السديس فلطفاً حدد نوع العلاقة</div>
+            <div class="input-class">
+                    <input type="text" class="text-class" name="RelationToFamily" id="RelationToFamily" value="{{data.RelationToFamily}}" autocomplete="off">
+                    <div class="text-content"></div>
+                </div>
+            </div>
+
+            <div class="listitem" style="" >
+                <div class="label-d"> ماهي فئتك العمرية <span class="span-req"> * </span></div>
+                <div class="form-group">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="AgeRangeId" value="1" id="AgeRangeId" checked />
+                            <span class="radio-span">أقل من 19 سنة</span>
+
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="AgeRangeId" value="2" id="AgeRangeId"/>
+                            <span class="radio-span">من 20 سنة حتى 50 سنة </span>
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="AgeRangeId" value="3" id="AgeRangeId"/>
+                            <span class="radio-span"> أعلى من 50 سنة</span>
+
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="listitem" style="" >
+                <div class="label-d">الجنس <span class="span-req"> * </span></div>
+                <div class="form-group">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="GenderId" value="1"  id="GenderId" checked />
+                            <span class="radio-span">ذكر</span>
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="GenderId" value="2" id="GenderId"/>
+                            <span class="radio-span">أنثي </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="listitem" style="" >
+                <div class="label-d"> رقم الجوال ونأمل عدم تكراره - يجب على  كل فرد أن يسجل برقمه الخاص <span class="span-req"> * </span></div>
+            <div class="input-class">
+                    <input type="text" class="text-class" name="PhoneNo" id="PhoneNo" value="{{data.PhoneNo}}" autocomplete="off" required>
+                    <div class="text-content"></div>
+                </div>
+            </div>
+
+            <div class="listitem" style="" >
+                <div class="label-d"> مدينة العنوان الدائم لك  <span class="span-req"> * </span></div>
+                <div class="input-class">
+                    <input type="text" class="text-class" name="CityName" id="CityName" value="{{data.CityName}}" autocomplete="off" required>
+                    <div class="text-content"></div>
+                </div>
+            </div>
+
+            <div class="listitem" style="" >
+                <div class="label-d">هل ستحضر اللقاء  <span class="span-req"> * </span></div>
+                <div class="form-group">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="WillYouAttend" id="WillYouAttend" value="1"  checked />
+                            <span class="radio-span">سوف أحضر باذن الله</span>
+                        </label>
+                    </div>
+
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="WillYouAttend" id="WillYouAttend" value="2" />
+                            <span class="radio-span">أعتذر عن الحضور </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="listitem" style="" >
+                <div class="label-d"> هل لديك مشاركة أو فكرة تود تقديمها في الحفل ؟ نسعد بمعرفة ذلك  </div>
+                <div class="input-class">
+                    <input type="text" class="text-class" name="Ideas" id="Ideas" value="{{data.Ideas}}" autocomplete="off"   >
+                    <div class="text-content"></div>
+                </div>
+            </div>
+
+            <div class="form-group"  style="width: 100%;text-align: center;margin-top: -10px;background-color: white;padding-bottom: 10px;padding-top: 20px;border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+                <button type="submit" class="btn btn-primary btn-flat btn-login" style="border-radius: 10px;height: 50px;font-size: 19px;">إرسال</button>
+            </div>
+        </form>
+    </div>
+{%endblock%}
