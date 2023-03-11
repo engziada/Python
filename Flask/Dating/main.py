@@ -18,6 +18,13 @@ app.config["MYSQL_USER"] = "root"
 app.config["MYSQL_PASSWORD"] = "P@ssw0rd1234567"
 app.config["MYSQL_DB"] = "dating"
 app.config["MYSQL_CURSORCLASS"] = "DictCursor"
+
+# app.config["MYSQL_HOST"] = "ziada.mysql.pythonanywhere-services.com"
+# app.config["MYSQL_USER"] = "ziada"
+# app.config["MYSQL_PASSWORD"] = "P@ssw0rd1234567"
+# app.config["MYSQL_DB"] = "ziada$dating"
+# app.config["MYSQL_CURSORCLASS"] = "DictCursor"
+
 db = MySQL(app)
 
 
