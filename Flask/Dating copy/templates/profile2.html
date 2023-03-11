@@ -1,0 +1,110 @@
+{% extends 'theme.html' %}
+
+{% block title %}
+الملف الشخصي
+{% endblock %}
+
+{% block content %}
+<h2>صفحة الملف الشخصي</h2>
+<div>
+    <p>بيانات الحساب</p>
+    <table>
+        <tr>
+            <td>الإسم بالكامل:</td>
+            <td>{{ account['fullname'] }}</td>
+        </tr>
+        <tr>
+            <td>كلمة المرور:</td>
+            <td><a href="#">تغيير كلمة المرور</a></td>
+        </tr>
+        <tr>
+            <td> رقم الجوال:</td>
+            <td>{{ account['phoneno'] }}</td>
+        </tr>
+    </table>
+</div>
+<div class="profile">
+    <p>بيانات الملف</p>
+
+    <form action="{{ url_for('profile2') }}" method="post" autocomplete="on">
+        {{ form.csrf_token }}
+        <table>
+            <tr>
+                <td>
+        {{ form.gender.label }} {{ form.gender}}
+                </td>
+                <td>
+        {{ form.age.label }} {{ form.age}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+        {{ form.length.label }} {{ form.length }}
+                </td>
+                <td>
+        {{ form.weight.label }} {{ form.weight }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+        {{ form.color.label }} {{ form.color }}
+                </td>
+                <td>
+        {{ form.nationality.label }} {{ form.nationality }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+        {{ form.jobstatus.label }} {{ form.jobstatus }}
+                </td>
+                <td>
+        {{ form.smokingstatus.label }} {{ form.smokingstatus }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+        {{ form.qabila.label }} {{ form.qabila }}
+                </td>
+                <td>
+        {{ form.martialstatus.label }} {{ form.martialstatus}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+        {{ form.origin.label }} {{ form.origin }}
+                </td>
+                <td>
+        {{ form.qualifications.label }} {{ form.qualifications }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+        {{ form.marriagetype.label }} 
+        <div>
+        </div>            
+                </td>
+                <td>
+        {{ form.anothernationality.label }} {{ form.anothernationality}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+        {{ form.about.label }} {{ form.about }}
+                </td>
+                <td>
+        {{ form.requirments.label }} {{ form.requirments }}
+                </td>
+            </tr>
+
+        </table>
+
+        <div class="button-container">
+            <input class="button" type="submit" name="Save" value=" حفظ الملف">
+            <input class="button" type="submit" name="Delete" value="حذف الملف">
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

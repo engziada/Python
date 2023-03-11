@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
+
+		<title>{%block title %}{%endblock%}</title>
+
+	</head>
+	<body class="loggedin">
+		<nav class="navtop">
+			<div class="navtop-logo">
+				<a><i class="fa fa-hand-holding-heart" style="font-size: xx-large; "></i></a>
+				<h1>السفيرة عزيزة - للزواج الشرعي</h1>
+			</div>
+			<div class="navtop-container">
+                <a href="{{ url_for('home') }}"><i class="fa-solid fa-home">&nbsp;</i>الصفحة الرئيسية</a>
+				<a href="{{ url_for('profile2') }}"><i class="fa-solid fa-user-circle">&nbsp; </i>الملف الشخصي</a>
+				{%if session['fullname']=='Administrator' %}
+				<div class="dropdown">
+					<!-- <i class="fa-solid fa-user-circle"></i> -->
+					<button class="dropbtn">مدير النظام 
+						<i class="fa fa-caret-down"></i>
+					</button>
+					<div class="dropdown-content">
+						<a href="{{ url_for('requests') }}">الطلبات</a>
+						<a href="{{ url_for('users') }}">المستخدمين</a>
+					</div>
+				</div>
+				{%endif%}
+				<a href="{{ url_for('logout') }}"><i class="fa-solid fa-sign-out-alt">&nbsp; </i>خروج</a>
+			</div>
+		</nav>
+
+		<!-- {%if msg%}
+			<div class="msg hideMe">{{msg}}</div>
+		{%endif%} -->
+
+		<!-- {% for mesg in get_flashed_messages() %}
+			<div class="msg hideMe">{{ mesg }}</div>
+		{% endfor %} -->
+
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				<div class="msg hideMe">
+					<ul>
+						{% for message in messages %}
+							<li>{{ message }}</li>
+						{% endfor %}
+					</ul>
+				</div>
+			{% endif %}
+		{% endwith %}
+
+		<div class="content">
+			{% block content %}{% endblock %}
+		</div>
+
+		<script type="text/javascript" src="{{ url_for('static', filename='scripts/script.js') }}"></script>
+
+	</body>
+</html>

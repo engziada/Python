@@ -88,13 +88,11 @@
                         <div id="list2" class="dropdown-check-list">
                             <span class="anchor">الحالة الإجتماعية</span>
                             <ul class="items">
-                                <li><input type="checkbox" name="martialstatus" value="أعزب" {{ "checked" if martialstatus else "" }}/>أعزب</li>
-                                <li><input type="checkbox" name="martialstatus" value="متزوج و لدي أبناء" {{ "checked" if martialstatus else "" }}/>متزوج و لدي أبناء</li>
-                                <li><input type="checkbox" name="martialstatus" value="متزوج و ليس لدي أبناء" {{ "checked" if martialstatus else "" }}/>متزوج و ليس لدي أبناء</li>
-                                <li><input type="checkbox" name="martialstatus" value="مطلق و لدي أبناء" {{ "checked" if martialstatus else "" }}/>مطلق و لدي أبناء</li>
-                                <li><input type="checkbox" name="martialstatus" value="مطلق و ليس لدي أبناء" {{ "checked" if martialstatus else "" }}/>مطلق و ليس لدي أبناء</li>
-                                <li><input type="checkbox" name="martialstatus" value="أرمل و لدي أبناء" {{ "checked" if martialstatus else "" }}/>أرمل و لدي أبناء</li>
-                                <li><input type="checkbox" name="martialstatus" value="أرمل و ليس لدي أبناء" {{ "checked" if martialstatus else "" }}/>أرمل و ليس لدي أبناء</li>
+                                <li><input type="checkbox" name="martialstatus" value="شرعي" {{ "checked" if marriagetype else "" }}/>شرعي</li>
+                                <li><input type="checkbox" name="martialstatus" value="علني" {{ "checked" if marriagetype else "" }}/>علني</li>
+                                <li><input type="checkbox" name="martialstatus" value="سري" {{ "checked" if marriagetype else "" }}/>سري</li>
+                                <li><input type="checkbox" name="martialstatus" value="مؤقت" {{ "checked" if marriagetype else "" }}/>مؤقت</li>
+                                <li><input type="checkbox" name="martialstatus" value="مسيار" {{ "checked" if marriagetype else "" }}/>مسيار</li>
                             </ul>
                         </div>
                     </td>
@@ -113,21 +111,21 @@
                     </td>
                 </tr>
 
-                <!-- <tr>
+                <tr>
                     <td>
                         <label for="qabila">القبيلة</label>
                         <input type="text" name="qabila" placeholder="القبيلة" id="qabila" value="{{data['qabila']}}">
                     </td>
-                    <td>
+                    <!-- <td>
                         <label for="area">المنطقة</label>
                         <input type="text" name="area" placeholder="المنطقة" id="area" value="{{data['area']}}">
                     </td>
                     <td>
                         <label for="city">المدينة</label>
                         <input type="text" name="city" placeholder="المدينة" id="city" value="{{data['city']}}">
-                    </td>
+                    </td> -->
                 </tr>
- -->
+
             </table>
         
             <input type="submit" name="Search" value="بحث">
@@ -148,10 +146,10 @@
                         <th>الوزن</th>
                         <th>لون البشرة</th>
                         <!-- <th>الحالة الوظيفية</th> -->
-                        <!-- <th>القبيلة</th> -->
+                        <th>القبيلة</th>
                         <!-- <th>مدخن</th> -->
                         <th>الحالة الإجتماعية</th>
-                        <!-- <th>المنطقة</th> -->
+                        <th>المنطقة</th>
                         <th>المدينة</th>
                         <!-- <th>منطقه الأصل</th> -->
                         <th>المؤهل الدراسى</th>
@@ -170,9 +168,9 @@
                         <td>{{row.length}}</td>
                         <td>{{row.weight}}</td>
                         <td>{{row.color}}</td>
-                        <!-- <td>{{row.qabila}}</td> -->
+                        <td>{{row.qabila}}</td>
                         <td>{{row.martialstatus}}</td>
-                        <!-- <td>{{row.area}}</td> -->
+                        <td>{{row.area}}</td>
                         <td>{{row.city}}</td>
                         <td>{{row.qualifications}}</td>
                         <td>{{row.marriagetype}}</td>
@@ -204,29 +202,21 @@
                                         <td>{{row.origin}}</td>
                                     </tr>
                                     <tr>
-                                        <td>القبيلة</td>
-                                        <td>{{row.qabila}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>المنطقة</td>
-                                        <td>{{row.area}}</td>
-                                    </tr>
-                                    <tr>
                                         <td>هل يقبل بجنسية أخرى</td>
                                         <td>{%if row.anothernationality%}نعم{%else%}لا{%endif%}</td>
                                     </tr>
                                     <tr>
-                                        <td>عن المشترك</td>
+                                        <td>نبذه عن المشترك</td>
                                         <td>{{row.about}}</td>
                                     </tr>
                                     <tr>
-                                        <td>عن الشريك</td>
+                                        <td>مواصفات مطلوبة في الشريك</td>
                                         <td>{{row.requirments}}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="2">
                                             <form method="post" action="#">
-                                                <input type="hidden" id="requesterid" name="requesterid" value="{{session['userid']}}">
+                                                <input type="hidden" id="requesterid" name="requesterid" value="{{session['iduser']}}">
                                                 <input type="hidden" id="targetid" name="targetid" value="{{row.userid}}">
                                                 <input class="button button-single" type="submit" name="Request" value="طلب تواصل">
                                             </form>
@@ -244,7 +234,7 @@
                 <p>لا توجد نتائج</p>
             {%endif%}
         </div>
-        <!-- <iframe frameborder='0' noresize='noresize' style='position: absolute; background: transparent; width: 100%; height:100%;' src="{{ url_for('profile') }}" frameborder="0"></iframe> -->
+        <!-- <iframe frameborder='0' noresize='noresize' style='position: absolute; background: transparent; width: 100%; height:100%;' src="{{ url_for('profile2') }}" frameborder="0"></iframe> -->
 
 {% endblock %}
 

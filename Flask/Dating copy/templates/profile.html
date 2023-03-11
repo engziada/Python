@@ -1,0 +1,109 @@
+{% extends 'theme.html' %}
+
+{% block title %}
+الملف الشخصي
+{% endblock %}
+
+{% block content %}
+<h2>صفحة الملف الشخصي</h2>
+<div>
+    <p>بيانات الحساب</p>
+    <table>
+        <tr>
+            <td>الإسم بالكامل:</td>
+            <td>{{ account['fullname'] }}</td>
+        </tr>
+        <tr>
+            <td>كلمة المرور:</td>
+            <td><a href="#">تغيير كلمة المرور</a></td>
+        </tr>
+        <tr>
+            <td> رقم الجوال:</td>
+            <td>{{ account['phoneno'] }}</td>
+        </tr>
+    </table>
+</div>
+<div class="profile">
+    <p>بيانات الملف</p>
+
+    <form action="{{ url_for('profile') }}" method="post" autocomplete="on">
+
+    <label for="gender">الجنس</label>
+    <div class="form-group radio">
+        <input type="radio" name="gender" value="ذكر"  id="gender" {%if data.gender=='ذكر' or not data.gender%}checked{%endif%}/>
+        <span class="radio-span">ذكر</span>
+        <input type="radio" name="gender" value="أنثى" id="gender" {%if data.gender=='أنثى'%}checked{%endif%}/>
+        <span class="radio-span">أنثى </span>
+    </div>
+
+    <label for="nationality">الجنسية</label>
+    <input type="text" name="nationality" placeholder="الجنسية" id="nationality" value="{{data.nationality}}">
+
+    <label for="age">العمر</label>
+    <input type="number" name="age" placeholder="العمر" id="age" min="10" max="120" value="{%if not data.age%}18{%else%}{{data.age}}{%endif%}">
+
+    <label for="length">الطول</label>
+    <input type="number" name="length" placeholder="الطول بالسنتيميتر" id="length" min="100" max="300" value="{%if not data.length%}160{%else%}{{data.length}}{%endif%}">
+
+    <label for="weight">الوزن</label>
+    <input type="number" name="weight" placeholder="الوزن بالكيلوجرام" id="weight" min="10" max="300" value="{%if not data.weight%}70{%else%}{{data.weight}}{%endif%}">
+
+    <label for="color">لون البشرة</label>
+    <input type="text" name="color" placeholder="لون البشرة" id="color" value="{{data.color}}">
+
+    <label for="jobstatus">الحالة الوظيفية</label>
+    <input type="text" name="jobstatus" placeholder="الحالة الوظيفية" id="jobstatus" value="{{data.jobstatus}}">
+
+    <label for="qabila">القبيلة</label>
+    <input type="text" name="qabila" placeholder="القبيلة" id="qabila" value="{{data.qabila}}">
+
+    <label for="smokingstatus">مدخن</label>
+    <div class="form-group radio">
+        <input type="radio" name="smokingstatus" value="1"  id="smokingstatus" {%if data.smokingstatus==1 or not data.smokingstatus%}checked{%endif%}/>
+        <span class="radio-span">نعم</span>
+        <input type="radio" name="smokingstatus" value="0" id="smokingstatus" {%if data.smokingstatus==0 %}checked{%endif%}/>
+        <span class="radio-span">لا </span>
+    </div>
+
+    <label for="martialstatus">الحالة الإجتماعية</label>
+    <input type="text" name="martialstatus" placeholder="الحالة الإجتماعية" id="martialstatus" value="{{data.martialstatus}}">
+
+    <label for="area">المنطقة</label>
+    <input type="text" name="area" placeholder="المنطقة" id="area" value="{{data.area}}">
+
+    <label for="city">المدينة</label>
+    <input type="text" name="city" placeholder="المدينة" id="city" value="{{data.city}}">
+
+    <label for="origin">منطقه الأصل</label>
+    <input type="text" name="origin" placeholder="منطقه الأصل" id="origin" value="{{data.origin}}">
+
+    <label for="qualifications">المؤهل الدراسى</label>
+    <input type="text" name="qualifications" placeholder="المؤهل الدراسى" id="qualifications" value="{{data.qualifications}}">
+
+    <label for="marriagetype">نوع الزواج</label>
+    <input type="text" name="marriagetype" placeholder="نوع الزواج" id="marriagetype" value="{{data.marriagetype}}">
+
+    <label for="anothernationality">هل تقبل بجنسية أخرى</label>
+    <div class="form-group radio">
+        <input type="radio" name="anothernationality" value="1"  id="anothernationality" {%if data.anothernationality==1  or not data.anothernationality%}checked{%endif%}/>
+        <span class="radio-span">نعم</span>
+        <input type="radio" name="anothernationality" value="0" id="anothernationality" {%if data.anothernationality==0 %}checked{%endif%}/>
+        <span class="radio-span">لا </span>
+    </div>
+
+    <label for="about">تحدث عن نفسك</label>
+    <textarea name="about" placeholder="تحدث عن نفسك" id="about" rows="5" >{{data.about}}</textarea>
+
+    <label for="requirments">الشروط المطلوبة فى الطرف الأخر</label>
+    <textarea name="requirments" placeholder="الشروط المطلوبة فى الطرف الأخر" id="requirments" rows="5" >{{data.requirments}}</textarea>
+
+    <div class="button-container">
+        <input class="button" type="submit" name="Save" value=" حفظ الملف">
+        <input class="button" type="submit" name="Delete" value="حذف الملف">
+    </div>
+
+</form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+	<head>
+		<meta charset="utf-8">
+		<title>{%block title %}{%endblock%}</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
+	</head>
+	<body>
+		<nav class="navtop">
+			<div class="navtop-logo">
+				<a><i class="fa fa-hand-holding-heart" style="font-size: xx-large; "></i></a>
+				<h1>السفيرة عزيزة - للزواج الشرعي</h1>
+			</div>
+			<div class="navtop-container">
+                <a href="{{ url_for('home') }}"><i class="fa-solid fa-home">&nbsp;</i>الصفحة الرئيسية</a>
+				<a href="{{ url_for('profile2') }}"><i class="fa-solid fa-user-circle">&nbsp; </i>الملف الشخصي</a>
+			</div>
+		</nav>
+
+		<div>
+			{% block content %}{% endblock %}
+		</div>
+	</body>
+</html>
