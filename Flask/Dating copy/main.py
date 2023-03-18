@@ -18,6 +18,9 @@ from sqlalchemy import create_engine,select,insert,update,delete
 from sqlalchemy.orm import Session, scoped_session, sessionmaker
 from sqlalchemy.ext.automap import automap_base
 
+from flask_admin import Admin,menu,model
+from flask_admin.contrib.sqla import ModelView
+
 # Create FLASK application
 app = Flask(__name__)
 app.config["SECRET_KEY"] ="12qwaszx#E"
@@ -46,9 +49,55 @@ db = Base.classes
 # session = scoped_session(sessionmaker(bind=engine))
 db_session = Session(engine)
 
+admin = Admin(app)#, template_mode='bootstrap3')#,base_template='theme.html')
+
+class UserView(ModelView):
+    form_columns=('fullname','phoneno')
+    column_exclude_list = ['password']
+    column_searchable_list = ['fullname', 'phoneno']
+    column_filters = ['fullname']
+    column_editable_list = ['fullname']
+
+
+class ManView(ModelView):
+    form_choices = {
+        'gender': [
+            ('ذكر', 'ذكر'),
+            ('أنثى', 'أنثى')
+        ]
+    }
+    form_args = {
+        'gender': {
+            'label': 'الجنس',
+            'validators': [wtf.validators.InputRequired()]
+        }
+    }
+    form_widget_args = {
+        'nationality': {
+            'rows': 10,
+            'style': 'color: red'
+        }
+    }
+    form_ajax_refs = {
+        'user': {
+            'fields': ['fullname','phoneno'],
+            'page_size': 10
+        }
+    }
+    ajax_refs = {
+        'user': {
+            'fields': ['fullname'],
+            'page_size': 10
+        }
+    }
+    can_export = True
 
 
 
+
+admin.add_view(UserView(db.user, db_session))
+admin.add_view(ManView(db.man, db_session))
+# admin.add_link(MenuLink(name='Home Page', url='/', category='Links'))
 
 
 class ProfileForm(FlaskForm):

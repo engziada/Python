@@ -1,16 +1,22 @@
+{% from 'bootstrap5/nav.html' import render_nav_item %}
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
+		{% block head %}
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<title>{%block title %}{%endblock%}</title>
-
+			<title>{%block title %}{%endblock%}</title>
+			{% block styles %}
+				<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+				<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
+				{{ bootstrap.load_css() }}
+			{% endblock %}
+		{%endblock%}
 	</head>
 	<body class="loggedin">
-		<nav class="navtop">
+		<!-- <nav class="navtop">
 			<div class="navtop-logo">
 				<a><i class="fa fa-hand-holding-heart" style="font-size: xx-large; "></i></a>
 				<h1>السفيرة عزيزة - للزواج الشرعي</h1>
@@ -20,7 +26,6 @@
 				<a href="{{ url_for('profile') }}"><i class="fa-solid fa-user-circle">&nbsp; </i>الملف الشخصي</a>
 				{%if session['fullname']=='Administrator' %}
 				<div class="dropdown">
-					<!-- <i class="fa-solid fa-user-circle"></i> -->
 					<button class="dropbtn">مدير النظام 
 						<i class="fa fa-caret-down"></i>
 					</button>
@@ -32,8 +37,33 @@
 				{%endif%}
 				<a href="{{ url_for('logout') }}"><i class="fa-solid fa-sign-out-alt">&nbsp; </i>خروج</a>
 			</div>
-		</nav>
+		</nav> -->
 
+
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+		<a class="navbar-brand" href="#"><i class="fa fa-hand-holding-heart" style="font-size: xx-large; "></i> &nbsp; السفيرة عزيزة - للزواج الشرعي</a>
+			<ul class="navbar-nav mr-auto">
+				{{ render_nav_item('home', 'الصفحة الرئيسية',_use_li=True) }}
+				{{ render_nav_item('profile', 'الملف الشخصي',_use_li=True) }}
+				{%if session['fullname']=='Administrator' %}
+				<div class="dropdown">
+					<button class="dropbtn">مدير النظام 
+						<i class="fa fa-caret-down"></i>
+					</button>
+					<div class="dropdown-content">
+						<a href="{{ url_for('requests') }}">الطلبات</a>
+						<a href="{{ url_for('users') }}">المستخدمين</a>
+					</div>
+				</div>
+				{%endif%}
+				{{ render_nav_item('logout', 'خروج',_use_li=True) }}
+			</ul>
+	</nav>
+
+	 
+
+	 
+  
 		<!-- {%if msg%}
 			<div class="msg hideMe">{{msg}}</div>
 		{%endif%} -->
@@ -58,7 +88,12 @@
 			{% block content %}{% endblock %}
 		</div>
 
-		<script type="text/javascript" src="{{ url_for('static', filename='scripts/script.js') }}"></script>
+        {% block scripts %}
+			<script type="text/javascript" src="{{ url_for('static', filename='scripts/script.js') }}"></script>
+            <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> -->
 
+			{{ bootstrap.load_js() }}
+        {% endblock %}
 	</body>
 </html>

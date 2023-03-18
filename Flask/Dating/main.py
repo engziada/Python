@@ -1,3 +1,4 @@
+from flask_bootstrap import Bootstrap5
 from flask import Flask, render_template, request, redirect, url_for, session, make_response,flash
 from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -6,7 +7,6 @@ from whatsapp import WhatsApp
 import pandas as pd
 import io,re,csv,string
 from random import choices
-
 
 # Create FLASK application
 app = Flask(__name__)
@@ -25,8 +25,11 @@ app.config["MYSQL_CURSORCLASS"] = "DictCursor"
 # app.config["MYSQL_DB"] = "ziada$dating"
 # app.config["MYSQL_CURSORCLASS"] = "DictCursor"
 
-db = MySQL(app)
+# Initialize Bootstrap
+bootstrap = Bootstrap5(app)
 
+# Initialize Database
+db = MySQL(app)
 
 def checkPassword(username:str,password:str)->int:
     phoneno=username
@@ -275,7 +278,7 @@ def profile():
                 # Check if user has already profile, so update, else insert
                 if profile:
                     query=f"""
-                                UPDATE dating.man
+                                UPDATE man
                                     SET
                                     created = '{datetime.now()}',
                                     nationality = '{nationality}',
@@ -306,7 +309,7 @@ def profile():
                 # Insert instead of update
                 else:
                     cursor.execute(f"""
-                                INSERT INTO dating.man
+                                INSERT INTO man
                                     (created,
                                     nationality,
                                     age,
@@ -380,9 +383,9 @@ def requests():
             data = {}
             requesterid = req['idrequester']
             targetid=req['idtarget']
-            cursor.execute(f"SELECT * FROM dating.user WHERE iduser={requesterid}")
+            cursor.execute(f"SELECT * FROM user WHERE iduser={requesterid}")
             user1data=cursor.fetchone()
-            cursor.execute(f"SELECT * FROM dating.user WHERE iduser={targetid}")
+            cursor.execute(f"SELECT * FROM user WHERE iduser={targetid}")
             user2data = cursor.fetchone()
             data['matchid'] = req['idmatch']
             data['idman1']=requesterid
@@ -420,7 +423,7 @@ def requests():
                                     city,
                                     qualifications,
                                     gender
-                        From dating.man
+                        From man
                         Where userid={requesterid}
                 """
                 cursor.execute(query)
