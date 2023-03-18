@@ -1,21 +1,22 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for, session, make_response,flash
 from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from whatsapp import WhatsApp
 import pandas as pd
-import io,re,csv,string
+import io,string
 from random import choices
 
 
 # Create FLASK application
 app = Flask(__name__)
-app.config["SECRET_KEY"] ="12qwaszx#E"
+app.config["SECRET_KEY"] =os.environ['SECRET_KEY']
 
 # MySQL database configuration parameters
 app.config["MYSQL_HOST"] = "localhost"
 app.config["MYSQL_USER"] = "root"
-app.config["MYSQL_PASSWORD"] = "P@ssw0rd1234567"
+app.config["MYSQL_PASSWORD"] = os.environ['MYSQL_PASSWORD']
 app.config["MYSQL_DB"] = "dating"
 app.config["MYSQL_CURSORCLASS"] = "DictCursor"
 db = MySQL(app)
