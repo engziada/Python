@@ -4,42 +4,46 @@
 
 {%block content%}
     <div class="login">
-        <h1>تسجيل الدخول</h1>
+        <h1>السفيرة عزيزة</h1>
+        <h4>ترحب بكم</h4>
+
         <div class="links">
             <a href="{{ url_for('login') }}" class="active">تسجيل الدخول</a>
             <a href="{{ url_for('register') }}">مستخدم جديد</a>
         </div>
+
         <form action="{{ url_for('login') }}" method="post" id="form1">
 
+            <div style="display: flex;">
             <label for="phoneno">
                 <i class="fas fa-phone"></i>
             </label>
-            <input type="text" name="phoneno" placeholder="رقم الجوال (يحتوي على كود الدولة)" id="phoneno" required oninput="if (this.value>0) forgetpasswordform.style='display:Block'; else forgetpasswordform.style='display:None'; targetphoneno.value=this.value">
+            <input type="number"  name="phoneno" placeholder="رقم الجوال (يحتوي على كود الدولة)" id="phoneno" value="{{phoneno}}" required oninput="if (this.value>0) forgetpasswordform.style='display:Block'; else forgetpasswordform.style='display:None'; targetphoneno.value=this.value">
+            </div>
 
+            <div style="display: flex;">
             <label for="password">
                 <i class="fas fa-lock"></i>
             </label>
             <input type="password" name="password" placeholder="كلمة المرور" id="password" required>
-            
+            </div>
 
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
-                    <div class="msg hideMe">
-                            {% for message in messages %}
-                                {{ message }}
-                            {% endfor %}
-                    </div>
+                    {% for message in messages %}
+                        <a class="hideMe" style="color: red;">{{ message }}</a>
+                    {% endfor %}
                 {% endif %}
     		{% endwith %}
 
-
             <input type="submit" name="login" id="login" value="دخول">
-
         </form>
+
         <div id="forgetpasswordform" name="forgetpasswordform" style="display: none;">
+        <hr>
             <form action="{{ url_for('login') }}" method="post" onsubmit="return confirm('هل أنت متأكد ؟\n سيتم إرسال رسالة نصية بكلمة المرور الجديدة');">
                 <input type="hidden" name="targetphoneno" id="targetphoneno">
-                <input type="submit" class="link-button" id="forgetpassword" name="forgetpassword" value="نسيت كلمة المرور؟" style="background-color: white; color: #2868c7;"/>
+                <input type="submit" class="link-button" id="forgetpassword" name="forgetpassword" value="نسيت كلمة المرور؟"/>
             </form>
         </div>
     </div>

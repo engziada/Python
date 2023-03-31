@@ -1,25 +1,22 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-bs-theme="dark">
 	<head>
-		<meta charset="utf-8">
-		<title>{%block title %}{%endblock%}</title>
-		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
-	</head>
-	<body>
-		<nav class="navtop">
-			<div class="navtop-logo">
-				<a><i class="fa fa-hand-holding-heart" style="font-size: xx-large; "></i></a>
-				<h1>السفيرة عزيزة - للزواج الشرعي</h1>
-			</div>
-			<div class="navtop-container">
-                <a href="{{ url_for('home') }}"><i class="fa-solid fa-home">&nbsp;</i>الصفحة الرئيسية</a>
-				<a href="{{ url_for('profile') }}"><i class="fa-solid fa-user-circle">&nbsp; </i>الملف الشخصي</a>
-			</div>
-		</nav>
+		{% block head %}
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+			<title>{%block title %}{%endblock%}</title>
 
-		<div>
+			{%block styles%}
+				<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
+				<link rel="stylesheet" href="{{ url_for('static', filename='css/loginstyle.css') }}">
+			{%endblock%}
+
+		{%endblock%}
+	</head>
+	
+	<section>
+	<body>
 			{% block content %}{% endblock %}
-		</div>
 	</body>
+	</section>
 </html>

@@ -5,10 +5,11 @@
 {% endblock %}
 
 {% block content %}
-<h2>صفحة الملف الشخصي</h2>
-<div>
-    <p>بيانات الحساب</p>
-    <table>
+<div class="container">
+    <p class="text-center fs-2 fw-bold text-primary my-2">الملف الشخصي</p>
+    <hr>
+
+    <table class="table">
         <tr>
             <td style="width:fit-content">الإسم بالكامل:</td>
             <td style="text-align: right;">{{ account['fullname'] }}</td>
@@ -18,7 +19,7 @@
             <td style="text-align: right;">{{ account['phoneno'] }}</td>
         </tr>
     </table>
-    <hr/>
+
     <details>
         <summary><a>تغيير كلمة المرور</a></summary>
         <br/>
@@ -53,10 +54,10 @@
         </div>
     </details>
 
-</div>
-<div class="profile">
-    <p>بيانات الملف</p>
+    <hr class="text-primary">
 
+</div>
+<div class="profile container">
     <form action="{{ url_for('profile') }}" method="post" autocomplete="on">
 
     <label for="gender">الجنس</label>
@@ -144,8 +145,8 @@
     <label for="marriagetype">نوع الزواج</label>
     <div id="list1" class="dropdownchecklist">
         <ul class="items">
-            <li><input type="checkbox" name="marriagetype" value="علني" {{ "checked" if "علني" in data.marriagetype else '' }}/>علني</li>
-            <li><input type="checkbox" name="marriagetype" value="سري" {{ "checked" if "سري" in data.marriagetype else '' }}/>سري</li>
+            <li><input type="checkbox" name="marriagetype" value="معلن" {{ "checked" if "معلن" in data.marriagetype else '' }}/>معلن</li>
+            <li><input type="checkbox" name="marriagetype" value="غير معلن" {{ "checked" if "غير معلن" in data.marriagetype else '' }}/>غير معلن</li>
         </ul>
     </div>
 

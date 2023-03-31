@@ -5,10 +5,13 @@
 {% endblock %}
 
 {% block content %}
-<h2>الطلبات</h2>
-<div class="searchresults">
+<div class="searchresults container">
+    <p class="text-center fs-2 fw-bold text-primary my-2">الطلبات</p>
+    <hr>
+
     <a href="{{url_for('export',tablename='request')}}">حفظ نسخة من طلبات التواصل</a>
-    <table>
+    
+    <table class="table table-striped table-hover border-primary table-sm">
         <thead>
             <tr>
                 <th>الكود</th>

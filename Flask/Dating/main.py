@@ -1,11 +1,11 @@
-from flask_bootstrap import Bootstrap5
+# from flask_bootstrap import Bootstrap5
 from flask import Flask, render_template, request, redirect, url_for, session, make_response,flash
 from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from whatsapp import WhatsApp
 import pandas as pd
-import io,re,csv,string
+import io,string
 from random import choices
 
 # Create FLASK application
@@ -26,7 +26,7 @@ app.config["MYSQL_CURSORCLASS"] = "DictCursor"
 # app.config["MYSQL_CURSORCLASS"] = "DictCursor"
 
 # Initialize Bootstrap
-bootstrap = Bootstrap5(app)
+# bootstrap = Bootstrap5(app)
 
 # Initialize Database
 db = MySQL(app)
@@ -139,6 +139,7 @@ def register():
             cursor.execute(f"INSERT INTO user (fullname,phoneno,password) VALUES ('{fullname}','{phoneno}','{password}')")
             db.connection.commit()
             flash('تم التسجيل بنجاح')
+            return redirect(url_for('login'))
     elif request.method == 'POST':
         # Form is empty... (no POST data)
         flash('من فضلك أكمل البيانات')
@@ -294,7 +295,7 @@ def profile():
                                     area = '{area}',
                                     city = '{city}',                                    
                                     qualifications = '{qualifications}',
-                                    {"marriagetype = '" + (",".join(marriagetype)+ "'," if marriagetype else "علني',")}
+                                    {"marriagetype = '" + (",".join(marriagetype)+ "'," if marriagetype else "معلن',")}
                                     anothernationality = {anothernationality},
                                     about = '{about}',
                                     requirments = '{requirments}',
@@ -345,7 +346,7 @@ def profile():
                                     '{area}',
                                     '{city}',
                                     '{qualifications}',
-                                    '{marriagetype}',
+                                    '{",".join(marriagetype) if marriagetype else "معلن"}'
                                     '{anothernationality}',
                                     '{about}',
                                     '{requirments}',

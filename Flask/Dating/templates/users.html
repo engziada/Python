@@ -5,13 +5,16 @@
 {% endblock %}
 
 {% block content %}
-<h2>قاعدة بيانات المشتركين</h2>
-<div class="searchresults">
+<div class="searchresults container">
+    <p class="text-center fs-2 fw-bold text-primary my-2">المستخدمين</p>
+    <hr>
+
     <a href="{{url_for('export',tablename='user')}}">حفظ نسخة من بيانات المستخدمين</a>
     <br />
     <a href="{{url_for('export',tablename='man')}}">حفظ نسخة من ملفات المستخدمين</a>
 
-    <table>
+    <div class="table-responsive">
+    <table class="table table-striped table-hover border-primary table-sm">
         <thead>
             <tr>
                 <th>الكود</th>
@@ -29,15 +32,16 @@
                 <td>{{row.phoneno}}</td>
                 <td style="background-color: #3274d6;"></td>
                 <td style="width: 40%;">
-                    <form method="post" action="#">
+                    <form class="form" method="post" action="#">
                         <input type="hidden" id="userid" name="userid" value="{{row.iduser}}">
-                        <input type="submit" name="ResetPassword" value="إعادة تعيين كلمة المرور" title="إعادة تعيين كلمة المرور">
-                        <input type="submit" name="DeleteUser" value="حذف ملف المشترك" title="حذف ملف المشترك">
+                        <input class="form-control btn btn-outline-success" type="submit" name="ResetPassword" value="إعادة تعيين كلمة المرور" title="إعادة تعيين كلمة المرور">
+                        <input class="form-control btn text-primary" type="submit" name="DeleteUser" value="حذف ملف المشترك" title="حذف ملف المشترك">
                     </form>
                 </td>
             </tr>
             {%endfor%}
         </tbody>
     </table>
+    </div>
 </div>
 {%endblock%}
